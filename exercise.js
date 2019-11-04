@@ -9,10 +9,10 @@
 
 function countSheep(number) {
   if (number === 0) {
-    console.log('All sheep jumped over the fence');
+    console.log('All sheep jumped over the fence')
   } else {
-    console.log(`${number}: Another sheep jumps over the fence`);
-    countSheep(number - 1);
+    console.log(`${number}: Another sheep jumps over the fence`)
+    countSheep(number - 1)
   }
 }
 
@@ -25,13 +25,13 @@ function countSheep(number) {
 
 function powerCalculator(base, exponent) {
   if (exponent < 0) {
-    console.log('exponent should be >= 0');
+    console.log('exponent should be >= 0')
   } else if (exponent > 0) {
     // 2^4 === powerCalculator(2, 4)
     // 2 * 2^3 === 2 * powerCalucator(2, 3)
-    return base * powerCalculator(base, exponent - 1);
+    return base * powerCalculator(base, exponent - 1)
   } else {
-    return 1;
+    return 1
   }
 }
 
@@ -39,24 +39,24 @@ function powerCalculator(base, exponent) {
 
 function reverseString(string) {
   if (string.length === 0) {
-    return ' ';
+    return ' '
   } else {
     return (
       string[string.length - 1] +
       reverseString(string.substring(0, string.length - 1))
-    );
+    )
   }
 }
 // console.log(reverseString('race car'));
 
 function nthNumber(number) {
   if (number < 0) {
-    return 'pick a better number';
+    return 'pick a better number'
   }
   if (number > 0) {
-    return number + nthNumber(number - 1);
+    return number + nthNumber(number - 1)
   } else {
-    return number;
+    return number
   }
 }
 // console.log(nthNumber(-1));
@@ -70,15 +70,15 @@ function splitStr(string, separator) {
   // take string and grab all chartacters that are not the separator
   // if it is the separator, make the previous items into one part of array
   // else we iterate through the rest of the string
-  let index = string.indexOf(separator);
+  let index = string.indexOf(separator)
   // '02/02/2020'
 
   if (index === -1) {
-    return [string];
+    return [string]
   }
   return [string.slice(0, index)].concat(
     splitStr(string.slice(index + separator.length), separator)
-  );
+  )
 }
 
 // console.log(splitStr('02/02/2020', '/'))
@@ -87,34 +87,34 @@ function fibonacci(num) {
   // fibonacci(7)
   // 1, 1, 2, 3, 5, 8, 13
   if (num <= 0) {
-    return 0;
+    return 0
   }
   if (num < 2) {
-    return 1;
+    return 1
   }
-  
-  return fibonacci(num - 1) + fibonacci(num - 2);
+
+  return fibonacci(num - 1) + fibonacci(num - 2)
 }
 function finalFib(num) {
   for (let i = 1; i <= num; i++) {
-    console.log(fibonacci(i));
+    console.log(fibonacci(i))
   }
 }
 
 // finalFib(7);
 
-function factorial(num){
-  if (num === 0){
-    return 1;
+function factorial(num) {
+  if (num === 0) {
+    return 1
   }
-  return num * factorial(num - 1);
+  return num * factorial(num - 1)
 }
 // console.log(factorial(5));
 let mySmallMaze = [
-  [' ', ' ', ' '],
-  [' ', '*', ' '],
+  [' ', ' ', ' '], 
+  [' ', '*', ' '], 
   [' ', ' ', 'e']
-];
+]
 
 let maze = [
   [' ', ' ', ' ', '*', ' ', ' ', ' '],
@@ -122,13 +122,40 @@ let maze = [
   [' ', ' ', ' ', ' ', ' ', ' ', ' '],
   [' ', '*', '*', '*', '*', '*', ' '],
   [' ', ' ', ' ', ' ', ' ', ' ', 'e']
-];
-function mazeSolver(maze){
-  if(maze[1] !== '*'){
-    maze[0] = 'X';
-    return 'R' + mazeSolver(maze);
-  }else if(maze[1] === '*'){
-    ma
+]
+
+function mazeSolver(maze, currentPosition = 0, row, column, dir = '', path = '') {
+
+  if (row < 0 || column < 0) {
+    return
   }
-  
+
+  if (row >= maze.length) {
+    return 
+  }
+
+  if (column >= maze[0].length) {
+    return
+  }
+
+  path += dir // store current spot in our path
+  currentPosition++
+
+  if (maze[row][column] === 'e') {
+    console.log('Success!', path)
+    return
+  }
+
+  // check that current spot is legal and mark it if it is, update position
+  // explore possible positions via recursion
+  if (maze[row][column] === ' ') {
+    maze[row][column] = dir 
+    mazeSolver(maze, currentPosition, row + 1, column, 'd', path)
+    mazeSolver(maze, currentPosition, row, column - 1, 'l', path)
+    mazeSolver(maze, currentPosition, row, column + 1, 'r', path)
+    mazeSolver(maze, currentPosition, row - 1, column, 'u', path)
+  }
 }
+
+// mazeSolver(mySmallMaze, 0, 0, 0)
+mazeSolver(maze, 0, 0, 0)
