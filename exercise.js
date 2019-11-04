@@ -9,10 +9,10 @@
 
 function countSheep(number) {
   if (number === 0) {
-    console.log('All sheep jumped over the fence')
+    console.log('All sheep jumped over the fence');
   } else {
-    console.log(`${number}: Another sheep jumps over the fence`)
-    countSheep(number - 1)
+    console.log(`${number}: Another sheep jumps over the fence`);
+    countSheep(number - 1);
   }
 }
 
@@ -25,15 +25,38 @@ function countSheep(number) {
 
 function powerCalculator(base, exponent) {
   if (exponent < 0) {
-    console.log('exponent should be >= 0')
+    console.log('exponent should be >= 0');
   } else if (exponent > 0) {
 
     // 2^4 === powerCalculator(2, 4)
     // 2 * 2^3 === 2 * powerCalucator(2, 3)
-    return base * powerCalculator(base, (exponent - 1))
+    return base * powerCalculator(base, (exponent - 1));
   } else {
-    return 1
+    return 1;
   }
 }
 
 // console.log('exercise 2', powerCalculator(3, 0))
+
+function reverseString(string){
+  if(string.length === 0){
+    return ' ';
+  }
+  else{
+    return string[string.length -1] + reverseString(string.substring(0,string.length - 1));
+  }
+}
+// console.log(reverseString('race car'));
+
+function nthNumber(number){
+  if(number < 0){
+    return 'pick a better number';
+  } 
+  if(number > 0){
+    return number + (nthNumber( number -1));
+  } else {
+    return number;
+  }
+
+}
+console.log(nthNumber(-1));
