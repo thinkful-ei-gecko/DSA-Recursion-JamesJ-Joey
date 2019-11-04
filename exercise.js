@@ -149,11 +149,12 @@ function mazeSolver(maze, currentPosition = 0, row, column, dir = '', path = '')
   // check that current spot is legal and mark it if it is, update position
   // explore possible positions via recursion
   if (maze[row][column] === ' ') {
-    maze[row][column] = dir 
+    maze[row][column] = 's' 
     mazeSolver(maze, currentPosition, row + 1, column, 'd', path)
     mazeSolver(maze, currentPosition, row, column - 1, 'l', path)
     mazeSolver(maze, currentPosition, row, column + 1, 'r', path)
     mazeSolver(maze, currentPosition, row - 1, column, 'u', path)
+    maze[row][column] = ' ' // unlock the occupied cell for future iterations
   }
 }
 
