@@ -109,4 +109,26 @@ function factorial(num){
   }
   return num * factorial(num - 1);
 }
-console.log(factorial(5));
+// console.log(factorial(5));
+let mySmallMaze = [
+  [' ', ' ', ' '],
+  [' ', '*', ' '],
+  [' ', ' ', 'e']
+];
+
+let maze = [
+  [' ', ' ', ' ', '*', ' ', ' ', ' '],
+  ['*', '*', ' ', '*', ' ', '*', ' '],
+  [' ', ' ', ' ', ' ', ' ', ' ', ' '],
+  [' ', '*', '*', '*', '*', '*', ' '],
+  [' ', ' ', ' ', ' ', ' ', ' ', 'e']
+];
+function mazeSolver(maze){
+  if(maze[1] !== '*'){
+    maze[0] = 'X';
+    return 'R' + mazeSolver(maze);
+  }else if(maze[1] === '*'){
+    ma
+  }
+  
+}
