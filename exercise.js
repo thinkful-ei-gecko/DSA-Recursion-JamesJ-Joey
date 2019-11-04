@@ -16,4 +16,24 @@ function countSheep(number) {
   }
 }
 
-countSheep(3)
+// exercise 1: countSheep(3)
+
+// Write a function called powerCalculator() that takes two parameters, an integer as a base, and another integer as an exponent. The function returns the value of the base raised to the power of the exponent. Use only exponents greater than or equal to 0 (positive numbers)
+
+// powerCalculator(10,2) should return 100
+// powerCalculator(10,-2) should return exponent should be >= 0
+
+function powerCalculator(base, exponent) {
+  if (exponent < 0) {
+    console.log('exponent should be >= 0')
+  } else if (exponent > 0) {
+
+    // 2^4 === powerCalculator(2, 4)
+    // 2 * 2^3 === 2 * powerCalucator(2, 3)
+    return base * powerCalculator(base, (exponent - 1))
+  } else {
+    return 1
+  }
+}
+
+// console.log('exercise 2', powerCalculator(3, 0))
