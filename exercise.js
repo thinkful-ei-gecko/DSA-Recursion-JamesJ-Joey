@@ -110,28 +110,30 @@ function factorial(num) {
   return num * factorial(num - 1)
 }
 // console.log(factorial(5));
-let mySmallMaze = [
-  [' ', ' ', ' '], 
-  [' ', '*', ' '], 
-  [' ', ' ', 'e']
-]
+let mySmallMaze = [[' ', ' ', ' '], [' ', '*', ' '], [' ', ' ', 'e']]
 
 let maze = [
   [' ', ' ', ' ', '*', ' ', ' ', ' '],
   ['*', '*', ' ', '*', ' ', '*', ' '],
   [' ', ' ', ' ', ' ', ' ', ' ', ' '],
   [' ', '*', '*', '*', '*', '*', ' '],
-  [' ', ' ', ' ', ' ', ' ', ' ', 'e']
+  [' ', ' ', ' ', ' ', ' ', ' ', 'e'],
 ]
 
-function mazeSolver(maze, currentPosition = 0, row, column, dir = '', path = '') {
-
+function mazeSolver(
+  maze,
+  currentPosition = 0,
+  row,
+  column,
+  dir = '',
+  path = ''
+) {
   if (row < 0 || column < 0) {
     return
   }
 
   if (row >= maze.length) {
-    return 
+    return
   }
 
   if (column >= maze[0].length) {
@@ -149,7 +151,7 @@ function mazeSolver(maze, currentPosition = 0, row, column, dir = '', path = '')
   // check that current spot is legal and mark it if it is, update position
   // explore possible positions via recursion
   if (maze[row][column] === ' ') {
-    maze[row][column] = 's' 
+    maze[row][column] = 's'
     mazeSolver(maze, currentPosition, row + 1, column, 'd', path)
     mazeSolver(maze, currentPosition, row, column - 1, 'l', path)
     mazeSolver(maze, currentPosition, row, column + 1, 'r', path)
@@ -159,4 +161,23 @@ function mazeSolver(maze, currentPosition = 0, row, column, dir = '', path = '')
 }
 
 // mazeSolver(mySmallMaze, 0, 0, 0)
-mazeSolver(maze, 0, 0, 0)
+// mazeSolver(maze, 0, 0, 0)
+
+function anagrams(prefix, string) {
+  if (string.length <= 1) {
+    console.log(prefix + string)
+  } else {
+    for (let i = 0; i < string.length; i++) {
+      let currentLetter = string.substring(i, i + 1)
+      let previousLetters = string.substring(0, i)
+      let afterLetters = string.substring(i + 1)
+      anagrams(prefix + currentLetter, previousLetters + afterLetters)
+    }
+  }
+}
+
+function printAnagram(word) {
+  anagrams(' ', word)
+}
+
+printAnagram('east')
